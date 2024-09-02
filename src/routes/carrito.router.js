@@ -18,7 +18,7 @@ router.post("/carts", (req, res)=>{
 
 router.get("/carts/:cid", (req,res)=>{
     const cartId = parseInt(req.params.cid) //Recibimos el cart id por parametro.
-    const cart = carts.find(c => c.cid === cartId) //Buscamos el cart con el id.
+    const cart = carts.find((c => c.cid === cartId)) //Buscamos el cart con el id.
 
     if (!cart) return res.status(404).json({ error: "No existe el carrito" });
     res.json(cart)
@@ -28,13 +28,13 @@ router.post("/carts/:cid/products/:pid", (req,res)=>{
     const cartId = parseInt(req.params.cid) //Recibimos el cart id por parametro.
     const productId = parseInt(req.params.pid) //Recibimos el product id por parametro.
 
-    const cart = carts.find(c => c.cid === cartId) //Buscamos el cart con el id.
+    const cart = carts.find((c => c.cid === cartId)) //Buscamos el cart con el id.
     if (!cart) return res.status(404).json({ error: "No existe el carrito" });
 
-    const product = products.find(p => p.pid === productId) //Buscamos el producto con el id.
+    const product = products.find((p => p.pid === productId)) //Buscamos el producto con el id.
     if (!product) return res.status(404).json({ error: "No existe el producto" });
 
-    const productInCart = cart.products.find(p => p.pid === productId) //Buscamos el producto en el carrito con el id.
+    const productInCart = cart.products.find((p => p.pid === productId)) //Buscamos el producto en el carrito con el id.
     if(productInCart) {
         productInCart.quantity += 1 //Le agregas el valor quantity y lo concatenas.
     } else {
